@@ -14,13 +14,13 @@ interface IRequest {
 type IResponse = Array<{
     hour: number;
     available: boolean;
-}>
+}>;
 
 @injectable()
 class ListProviderDayAvailabilityService {
     constructor(
         @inject('AppointmentsRepository')
-        private appointmentsRepository: IAppointmentsRepository
+        private appointmentsRepository: IAppointmentsRepository,
     ) { }
 
     public async execute({ provider_id, day, year, month }: IRequest): Promise<IResponse> {
@@ -43,14 +43,14 @@ class ListProviderDayAvailabilityService {
         const availability = eachHourDay.map(hour => {
             const hasAppointmentInHour = appointments.find(
                 appointment => getHours(appointment.date) === hour,
-            )
+            );
 
-            const compareDate = new Date(year, month - 1, day, hour)
+            const compareDate = new Date(year, month - 1, day, hour);
 
             return {
                 hour,
                 available: !hasAppointmentInHour && isAfter(compareDate, currentDate),
-            }
+            };
         });
 
         return availability;

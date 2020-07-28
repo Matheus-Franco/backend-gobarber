@@ -8,7 +8,6 @@ import AppError from '@shared/errors/AppError';
 import Appointment from '../infra/typeorm/entities/Appointment';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
 interface IRequest {
